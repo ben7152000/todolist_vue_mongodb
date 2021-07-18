@@ -10,6 +10,7 @@
 </template>
 
 <script>
+const createApi = 'https://aqueous-dawn-04820.herokuapp.com/api/todos' || 'http://localhost:8081/api/todos'
 export default {
   name: 'Create',
   data () {
@@ -20,7 +21,7 @@ export default {
   methods: {
     async createTodo () {
       try {
-        await this.axios.post('http://localhost:8081/api/todos', { name: this.name })
+        await this.axios.post(createApi, { name: this.name })
         this.name = ''
         this.$router.push('/')
       } catch (e) {

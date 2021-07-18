@@ -19,7 +19,8 @@
 </template>
 
 <script>
-
+const api = 'https://aqueous-dawn-04820.herokuapp.com/api' || 'http://localhost:8081/api'
+const deleteApi = 'https://aqueous-dawn-04820.herokuapp.com/api/todos' || 'http://localhost:8081/api/todos'
 export default {
   name: 'Home',
   data () {
@@ -28,7 +29,7 @@ export default {
     }
   },
   mounted () {
-    this.axios.get('http://localhost:8081/api')
+    this.axios.get(api)
       .then(data => {
         this.todos = data.data.todos
       })
@@ -38,7 +39,7 @@ export default {
   },
   methods: {
     deleteTodo (id) {
-      this.axios.delete(`http://localhost:8081/api/todos/${id}`)
+      this.axios.delete(`${deleteApi}/${id}`)
         .then(() => {
           this.$router.go('/')
         })

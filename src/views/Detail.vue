@@ -16,12 +16,12 @@
 </template>
 
 <script>
-
+const api = 'https://aqueous-dawn-04820.herokuapp.com/api/todos' || 'http://localhost:8081/api/todos'
 export default {
   name: 'Detail',
   mounted () {
     const id = this.$route.params.id
-    this.axios.get(`http://localhost:8081/api/todos/${id}`)
+    this.axios.get(`${api}/${id}`)
       .then(todo => {
         this.todo = todo.data.todo
       })
@@ -36,7 +36,7 @@ export default {
   },
   methods: {
     deleteTodo (id) {
-      this.axios.delete(`http://localhost:8081/api/todos/${id}`)
+      this.axios.delete(`${api}/${id}`)
         .then(() => {
           this.$router.push('/')
         })

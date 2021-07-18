@@ -15,11 +15,12 @@
 </template>
 
 <script>
+const api = 'https://aqueous-dawn-04820.herokuapp.com/api/todos' || 'http://localhost:8081/api/todos'
 export default {
   name: 'Edit',
   mounted () {
     const id = this.$route.params.id
-    this.axios.get(`http://localhost:8081/api/todos/${id}`)
+    this.axios.get(`${api}/${id}`)
       .then(todo => {
         this.todo = todo.data.todo
       })
@@ -32,7 +33,7 @@ export default {
   methods: {
     updateTodo (id) {
       console.log(this.todo.isDone)
-      this.axios.put(`http://localhost:8081/api/todos/${id}`, {
+      this.axios.put(`${api}/${id}`, {
         name: this.todo.name,
         isDone: this.todo.isDone === true ? 'on' : false
       })
